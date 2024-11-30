@@ -43,7 +43,7 @@ Before you begin, ensure you have the following installed:
   
 ## Getting Started
 **Installation**
-* Clone the Repository: git clone https://github.com/AnthonyMMIller/Sku-Manager.git
+* Clone the Repository: git clone https://github.com/AnthonyMMIller/sku-manager.git
 * Open the Solution
 * Navigate to the cloned repository.
 * Open SkuManagementTool.sln with Visual Studio.
@@ -82,7 +82,7 @@ Navigate to https://localhost:[port]/ (the port number is assigned by Visual Stu
 * Navigate to the Add SKU Page
 * Click on Add SKU in the navigation menu.
 * Fill Out the Form
-<br>
+  
 *Example*:
 Name: Enter the SKU name (e.g., "Example Course").<br>
 SKU Number: Enter the SKU number (e.g., "EPT601503").<br>
@@ -92,56 +92,56 @@ Course ID: Enter the course ID (e.g., "10706").<br>
 Package ID: Enter the package ID (e.g., "1068").<br>
 Submit the Form<br>
 You will be redirected to the Active SKUs page.<br>
-<br>
+  
 **View Active SKUs**<br>
 Click on Active SKUs in the navigation menu.<br>
 A table displays all active SKUs with details.<br>
-<br>
+  
 **Edit a SKU**<br>
 * Locate the SKU In the Active SKUs page, find the SKU you wish to edit.<br>
 * Click the Edit button next to the SKU.<br>
 * Modify the Details<br>
 * Save Changes<br>
 * Changes will be saved, and you'll return to the Active SKUs page.
-<br>
+  
 **Deactivate a SKU**<br>
 * Click the Deactivate button next to the SKU in the Active SKUs page.<br>
 * The SKU will move to the Deactivated SKUs list.<br>
-<br>
+  
 **View Deactivated SKUs**<br>
 * Click on Deactivated SKUs in the navigation menu.<br>
 * A table displays all deactivated SKUs.<br>
-<br>
+  
 **Reactivate a SKU**<br>
 * In the Deactivated SKUs page, click the Reactivate button next to the SKU.<br>
 * The SKU will move back to the Active SKUs list.<br>
-<br>
-## Project Structure
-SkuManagementTool/
-├── Data/
-│   └── ApplicationDbContext.cs
-├── Models/
-│   └── Sku.cs
-├── Pages/
-│   ├── AddSku.razor
-│   ├── ActiveSkus.razor
-│   ├── DeactivatedSkus.razor
-│   ├── EditSku.razor
-│   └── _Host.cshtml
-├── Services/
-│   └── SkuService.cs
-├── Shared/
-│   ├── MainLayout.razor
-│   ├── NavMenu.razor
-│   └── _Layout.cshtml
-├── wwwroot/
-│   ├── css/
-│   │   └── site.css
-│   └── index.html
-├── App.razor
-├── Program.cs
-└── appsettings.json
-<br>
+
+## Project Structure<br>
+SkuManagementTool/<br>
+├── Data/<br>
+│   └── ApplicationDbContext.cs<br>
+├── Models/<br>
+│   └── Sku.cs<br>
+├── Pages/<br>
+│   ├── AddSku.razor<br>
+│   ├── ActiveSkus.razor<br>
+│   ├── DeactivatedSkus.razor<br>
+│   ├── EditSku.razor<br>
+│   └── _Host.cshtml<br>
+├── Services/<br>
+│   └── SkuService.cs<br>
+├── Shared/<br>
+│   ├── MainLayout.razor<br>
+│   ├── NavMenu.razor<br>
+│   └── _Layout.cshtml<br>
+├── wwwroot/<br>
+│   ├── css/<br>
+│   │   └── site.css<br>
+│   └── index.html<br>
+├── App.razor<br>
+├── Program.cs<br>
+└── appsettings.json<br>
+
 ## Dependencies
 * Microsoft.EntityFrameworkCore
 * Microsoft.EntityFrameworkCore.SqlServer
