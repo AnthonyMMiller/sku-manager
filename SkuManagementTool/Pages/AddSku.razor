@@ -6,7 +6,7 @@
 
 <h3>Add New SKU</h3>
 
-<!-------------- Form for adding a new SKU ------------->
+@* Form for adding a new SKU *@
 <EditForm Model="newSku" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -45,12 +45,12 @@
 </EditForm>
 
 @code {
-    // Holds the data for the new SKU
+    @* Holds the data for the new SKU *@
     private Sku newSku = new();
-    // Stores any error messages
+    @* Stores any error messages *@
     private string errorMessage = "";
 
-    // Handles the form submission when valid.
+    @* Handles the form submission when valid. *@
     private async Task HandleValidSubmit()
     {
         try
@@ -62,7 +62,7 @@
         }
         catch (Exception ex)
         {
-            // Display the error message
+            @* Display the error message *@
             errorMessage = $"An error occurred while adding the SKU: {ex.Message}";
             Console.WriteLine($"Exception: {ex}");
         }

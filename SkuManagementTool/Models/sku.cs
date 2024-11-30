@@ -26,11 +26,13 @@ namespace SkuManagementTool.Models
 
         // Continuing Education Units associated with the SKU.
         public decimal CEUs { get; set; }
-        
+
         // Associated Course ID in Moodle.
+        [Required(ErrorMessage = "Course ID is required")]
         public int CourseId { get; set; }
-        
+
         // Associated Package ID from UA.
+        [Required(ErrorMessage = "Package ID is required")]
         public int PackageId { get; set; }
         
         // Indicates whether the SKU is active.

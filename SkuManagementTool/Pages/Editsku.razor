@@ -54,23 +54,23 @@ else
 }
 
 @code {
-    // The SKU ID from the route parameter
+    @* The SKU ID from the route parameter *@
     [Parameter]
     public int Id { get; set; }
 
-    // The SKU being edited
+    @* The SKU being edited *@
     private Sku sku;
 
-    // state variable
+    @* state variable *@
     private bool isLoading = true;
     
-    // Stores error messages
+    @* Stores error messages *@
     private string errorMessage = "";
 
-    /// Loads the SKU to be edited.
+    @* Loads the SKU to be edited.*@
     protected override async Task OnInitializedAsync()
     {
-        // Exception handling for if SKU ID is not found and load error
+        @* Exception handling for if SKU ID is not found and load error *@
         try
         {
             sku = await SkuService.GetSkuByIdAsync(Id);
@@ -89,24 +89,24 @@ else
             isLoading = false;
         }
     }
-    // Handles the form submission when valid.
+    @* Handles the form submission when valid.*@
     private async Task HandleValidSubmit()
     {
         try
         {
-            // Update date, save changes to database, navigate back to active skus page
+            @* Update date, save changes to database, navigate back to active skus page*@
             sku.DateUpdated = DateTime.Now;
             await SkuService.UpdateSkuAsync(sku);
             NavigationManager.NavigateTo("/active-skus");
         }
-            // Error if changes did not write to database successfully.
+        @* Error if changes did not write to database successfully.*@
         catch (Exception ex)
         {
             errorMessage = $"An error occurred while saving the SKU: {ex.Message}";
         }
     }
 
-    // Cancels the edit and navigates back.
+    @* Cancels the edit and navigates back.*@
     private void CancelEdit()
     {
         NavigationManager.NavigateTo("/active-skus");
