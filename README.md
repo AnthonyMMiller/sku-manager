@@ -90,8 +90,9 @@ Price: Enter the price (e.g., "699").<br>
 CEUs: Enter the CEUs (e.g., "1.9").<br>
 Course ID: Enter the course ID (e.g., "10706").<br>
 Package ID: Enter the package ID (e.g., "1068").<br>
-Submit the Form<br>
-You will be redirected to the Active SKUs page.<br>
+
+* Submit the Form<br>
+* You will be redirected to the Active SKUs page.<br>
   
 **View Active SKUs**<br>
 * Click on Active SKUs in the navigation menu.<br>
