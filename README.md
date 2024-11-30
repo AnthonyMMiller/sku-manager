@@ -83,7 +83,7 @@ Navigate to https://localhost:[port]/ (the port number is assigned by Visual Stu
 * Click on Add SKU in the navigation menu.
 * Fill Out the Form
   
-*Example*:
+*Example*:<br>
 Name: Enter the SKU name (e.g., "Example Course").<br>
 SKU Number: Enter the SKU number (e.g., "EPT601503").<br>
 Price: Enter the price (e.g., "699").<br>
