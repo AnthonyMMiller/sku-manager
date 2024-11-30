@@ -1,0 +1,71 @@
+﻿@page "/deactivated-skus"
+@using SkuManagementTool.Models
+@using SkuManagementTool.Services
+@inject SkuService SkuService
+@inject NavigationManager NavigationManager
+
+<h3>Deactivated SKUs</h3>
+
+<!--------- Check if SKUs are loaded -------->
+@if (skus == null)
+{
+    <p>Loading...</p>
+}
+<!-- Check if there are no SKUs -->
+else if (skus.Count == 0)
+{
+    <p>No deactivated SKUs found.</p>
+}
+else
+{
+<!-- Display SKUs in a table -->
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>SKU Number</th>
+                <th>Price</th>
+                <th>CEUs</th>
+                <th>Course ID</th>
+                <th>Package ID</th>
+                <th>Date Added</th>
+                <th>Date Updated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sku in skus)
+            {
+                <tr>
+                    <td>@sku.Name</td>
+                    <td>@sku.SkuNumber</td>
+                    <td>@sku.Price</td>
+                    <td>@sku.CEUs</td>
+                    <td>@sku.CourseId</td>
+                    <td>@sku.PackageId</td>
+                    <td>@sku.DateAdded.ToShortDateString()</td>
+                    <td>@sku.DateUpdated.ToShortDateString()</td>
+                    <td>
+                        <button class="btn btn-sm btn-success" @onclick="() => ReactivateSku(sku.Id)">Reactivate</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    // List of deactivated SKUs
+    private List<Sku> skus;
+    // Initializes the component by loading deactivated SKUs.
+    protected override async Task OnInitializedAsync()
+    {
+        skus = await SkuService.GetDeactivatedSkusAsync();
+    }
+    // Reactivates a SKU and refreshes the list.
+    private async Task ReactivateSku(int id)
+    {
+        await SkuService.ReactivateSkuAsync(id);
+        skus = await SkuService.GetDeactivatedSkusAsync();
+    }
+}

@@ -1,0 +1,114 @@
+﻿@page "/edit-sku/{Id:int}"
+@using SkuManagementTool.Models
+@using SkuManagementTool.Services
+@inject SkuService SkuService
+@inject NavigationManager NavigationManager
+
+<h3>Edit SKU</h3>
+
+<!-- Check if SKU is loaded -->
+@if (sku == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <!------------------- Form for editing the SKU ------------------------->
+    <EditForm Model="sku" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <InputText @bind-Value="sku.Name" id="name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="skuNumber">SKU Number:</label>
+            <InputText @bind-Value="sku.SkuNumber" id="skuNumber" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <InputNumber @bind-Value="sku.Price" id="price" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="ceus">CEUs:</label>
+            <InputNumber @bind-Value="sku.CEUs" id="ceus" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="courseId">Course ID:</label>
+            <InputNumber @bind-Value="sku.CourseId" id="courseId" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="packageId">Package ID:</label>
+            <InputNumber @bind-Value="sku.PackageId" id="packageId" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="button" class="btn btn-secondary" @onclick="CancelEdit">Cancel</button>
+    </EditForm>
+}
+
+@code {
+    // The SKU ID from the route parameter
+    [Parameter]
+    public int Id { get; set; }
+
+    // The SKU being edited
+    private Sku sku;
+
+    // state variable
+    private bool isLoading = true;
+    
+    // Stores error messages
+    private string errorMessage = "";
+
+    /// Loads the SKU to be edited.
+    protected override async Task OnInitializedAsync()
+    {
+        // Exception handling for if SKU ID is not found and load error
+        try
+        {
+            sku = await SkuService.GetSkuByIdAsync(Id);
+
+            if (sku == null)
+            {
+                errorMessage = "SKU not found.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred while loading the SKU: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+    // Handles the form submission when valid.
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            // Update date, save changes to database, navigate back to active skus page
+            sku.DateUpdated = DateTime.Now;
+            await SkuService.UpdateSkuAsync(sku);
+            NavigationManager.NavigateTo("/active-skus");
+        }
+            // Error if changes did not write to database successfully.
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred while saving the SKU: {ex.Message}";
+        }
+    }
+
+    // Cancels the edit and navigates back.
+    private void CancelEdit()
+    {
+        NavigationManager.NavigateTo("/active-skus");
+    }
+}

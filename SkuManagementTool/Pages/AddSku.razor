@@ -1,0 +1,70 @@
+﻿@page "/add-sku"
+@using SkuManagementTool.Models
+@using SkuManagementTool.Services
+@inject SkuService SkuService
+@inject NavigationManager NavigationManager
+
+<h3>Add New SKU</h3>
+
+<!-------------- Form for adding a new SKU ------------->
+<EditForm Model="newSku" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <InputText @bind-Value="newSku.Name" id="name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="skuNumber">SKU Number:</label>
+        <InputText @bind-Value="newSku.SkuNumber" id="skuNumber" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <InputNumber @bind-Value="newSku.Price" id="price" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="ceus">CEUs:</label>
+        <InputNumber @bind-Value="newSku.CEUs" id="ceus" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="courseId">Course ID:</label>
+        <InputNumber @bind-Value="newSku.CourseId" id="courseId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="packageId">Package ID:</label>
+        <InputNumber @bind-Value="newSku.PackageId" id="packageId" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add SKU</button>
+</EditForm>
+
+@code {
+    // Holds the data for the new SKU
+    private Sku newSku = new();
+    // Stores any error messages
+    private string errorMessage = "";
+
+    // Handles the form submission when valid.
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            newSku.DateAdded = DateTime.Now;
+            newSku.DateUpdated = DateTime.Now;
+            await SkuService.AddSkuAsync(newSku);
+            NavigationManager.NavigateTo("/active-skus");
+        }
+        catch (Exception ex)
+        {
+            // Display the error message
+            errorMessage = $"An error occurred while adding the SKU: {ex.Message}";
+            Console.WriteLine($"Exception: {ex}");
+        }
+    }
+}
