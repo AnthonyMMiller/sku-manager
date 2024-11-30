@@ -94,8 +94,8 @@ Submit the Form<br>
 You will be redirected to the Active SKUs page.<br>
   
 **View Active SKUs**<br>
-Click on Active SKUs in the navigation menu.<br>
-A table displays all active SKUs with details.<br>
+* Click on Active SKUs in the navigation menu.<br>
+* A table displays all active SKUs with details.<br>
   
 **Edit a SKU**<br>
 * Locate the SKU In the Active SKUs page, find the SKU you wish to edit.<br>
